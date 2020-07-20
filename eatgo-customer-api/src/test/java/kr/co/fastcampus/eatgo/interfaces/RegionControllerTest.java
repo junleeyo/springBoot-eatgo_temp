@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(RegionController.class)
@@ -46,25 +47,6 @@ public class RegionControllerTest {
                 .andExpect(content().string(
                         containsString("Seoul")
                 ));
-    }
-
-    @Test
-    public void create() throws Exception {
-        List<Region> mokRegions = new ArrayList<>();
-        mokRegions.add(
-                Region.builder()
-                        .name("Seoul")
-                        .build()
-        );
-        given(regionService.addRegion("Seoul")).willReturn(mokRegions.get(0));
-
-        mvc.perform(post("/regions")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"Seoul\"}"))
-                .andExpect(status().isCreated())
-                .andExpect(content().string("{}"));
-
-        verify(regionService).addRegion("Seoul");
     }
 
 }

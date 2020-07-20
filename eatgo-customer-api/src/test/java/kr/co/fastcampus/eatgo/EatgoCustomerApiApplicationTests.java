@@ -1,4 +1,4 @@
-package kr.co.fastcampus.eatgo.eatgo;
+package kr.co.fastcampus.eatgo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
