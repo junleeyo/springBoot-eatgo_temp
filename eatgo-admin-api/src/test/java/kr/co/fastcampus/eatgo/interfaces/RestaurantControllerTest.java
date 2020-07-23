@@ -94,7 +94,7 @@ public class RestaurantControllerTest {
     public void createWithValidata() throws Exception {
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"BeRyong\", \"address\":\"Buson\"}"))
+                .content("{\"name\":\"BeRyong\", \"address\":\"Buson\", \"categoryId\":\"1\"}"))
                 .andExpect(status().isCreated())
                 //.andExpect(header().string("location", "/restaurants/1234"))
                 .andExpect(content().string("{}"));
@@ -114,7 +114,7 @@ public class RestaurantControllerTest {
     public void updateWithValidata() throws Exception {
         mvc.perform(patch("/restaurants/1004")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"JOKER Bar\", \"address\":\"Buson\"}"))
+                .content("{\"name\":\"JOKER Bar\", \"address\":\"Buson\", \"categoryId\":\"1\"}"))
                 .andExpect(status().isOk());
 
         verify(restaurantService).updateRestaurant(1004L, "JOKER Bar", "Buson");
