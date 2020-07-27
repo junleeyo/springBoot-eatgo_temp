@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.xml.soap.SAAJResult;
 
 @Entity
 @Builder
@@ -25,6 +26,8 @@ public class User {
 
     @NotEmpty
     private String name;
+
+    private String password;
 
     @NotNull
     private Long level;
