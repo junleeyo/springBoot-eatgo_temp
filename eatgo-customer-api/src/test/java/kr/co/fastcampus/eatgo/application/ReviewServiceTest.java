@@ -28,7 +28,7 @@ public class ReviewServiceTest {
     public void addReview(){
 
         Review review = Review.builder()
-                .name("JOKER")
+                .name("John")
                 .score(3)
                 .description("Mot-it-da")
                 .build();
