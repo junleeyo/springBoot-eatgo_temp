@@ -11,9 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.xml.soap.SAAJResult;
 
 @Entity
-@Builder
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -22,14 +21,26 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @Setter
     @NotEmpty
     private String email;
 
+    @Setter
     @NotEmpty
     private String name;
 
+    @Setter
     private String password;
 
+    private Long restaurantId;
+
+    public void setRestaurantId(Long restaurantId) {
+        this.level = 50L;
+        this.restaurantId = restaurantId;
+    }
+
+
+    @Setter
     @NotNull
     private Long level;
 
@@ -43,5 +54,9 @@ public class User {
 
     public void deativate() {
         level = 0L;
+    }
+
+    public Boolean isRestaurantOwner() {
+        return this.level == 50L;
     }
 }
