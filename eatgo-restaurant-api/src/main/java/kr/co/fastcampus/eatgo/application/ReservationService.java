@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,17 +19,7 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public Reservation addReservation(Long restaurantId, Reservation resource) {
-
-        Reservation reservation = Reservation.builder()
-                .restaurantId(restaurantId)
-                .userId(resource.getUserId())
-                .name(resource.getName())
-                .date(resource.getDate())
-                .time(resource.getTime())
-                .partySize(resource.getPartySize())
-                .build();
-
-        return reservationRepository.save(reservation);
+    public List<Reservation> getReservations(long restaurantId) {
+        return reservationRepository.findAllByRestaurantId(restaurantId);
     }
 }
